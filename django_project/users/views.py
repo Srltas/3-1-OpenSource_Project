@@ -10,10 +10,10 @@ def home(requset):
     user_name = {}
     if user_id:
         user = users.objects.get(pk=user_id)
-        user_name['name'] = user.username
-        return render(requset, 'index.html',user_name)
+        user_name['name'] = '환영합니다 ' + user.username + '님'
+        return render(requset, 'home/index.html',user_name)
 
-    return render(requset, 'index.html')
+    return render(requset, 'home/index.html')
 
 def logout(request):
     if request.session.get('user'):
@@ -23,7 +23,7 @@ def logout(request):
 
 def login(request):
     if request.method == 'GET':
-        return render(request, 'login.html')
+        return render(request, 'users/login.html')
     elif request.method == 'POST':
         username = request.POST.get('username',None)
         password = request.POST.get('password',None)
@@ -40,7 +40,7 @@ def login(request):
             else:
                 res_data['error'] = '비밀번호를 틀렸습니다.'
 
-        return render(request, 'login.html',res_data)
+        return render(request, 'users/login.html',res_data)
 
 def signup(request):
     if request.method == 'GET':
