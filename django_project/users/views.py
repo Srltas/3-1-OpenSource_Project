@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 
 def signup(request):
     if request.method == 'GET':
-        return render(request, 'signup.html')
+        return render(request, 'users/signup.html')
     elif request.method == 'POST':
         username = request.POST.get('username', None)
         useremail = request.POST.get('useremail',None)
@@ -27,4 +27,4 @@ def signup(request):
 
             user.save()
 
-        return render(request, 'signup.html', res_data)
+        return render(request, 'users/signup.html', res_data)
