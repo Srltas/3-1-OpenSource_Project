@@ -1,5 +1,21 @@
-<html>
+<!DOCTYPE html>
+<html lang="ko-kr">
 <head>
+    <title>회원 가입</title>
+
+    <script type="text/javascript">
+
+        function onCheckBox(checkBox){
+            var obj = document.getElementsByName("checkbox1");
+            for(var i=0; i<obj.length; i++){
+                if(obj[i] != checkBox){
+                    obj[i].checked=false;
+                }
+            }
+        }
+
+    </script>
+
     <meta charset="utf-8">
     <meta name="viwport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -33,6 +49,16 @@
             <div class="form-group">
                 <label for="password">비밀번호</label>
                 <input type="password" class="form-control" id="password" placeholder="비밀번호" name="password">
+            </div>
+
+            <div class="form-group">
+                <label for="checkBoxMale">
+                    <input type="checkbox" name="checkbox1" id="checkBoxMale" value="male" onclick="onCheckBox(this)">남자</input>
+                </label>
+
+                <label for="checkBoxFemale">
+                    <input type="checkbox" name="checkbox1" id="checkBoxFemale" value="female" onClick="onCheckBox(this)">여자</input>
+                </label>
             </div>
             <div class="form-group">
                 <label for="re-password">비밀번호 확인</label>
