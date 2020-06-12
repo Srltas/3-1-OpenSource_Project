@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
+
 # Create your views here.
 
-def search(request):
-
+def index(request):
     return render(request, 'search/search_result.html')
 
 

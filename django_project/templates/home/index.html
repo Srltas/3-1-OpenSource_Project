@@ -21,16 +21,18 @@
     <body>
 
         <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand">EzLibs</a>
+            <a class="navbar-brand" href="/">EzLibs</a>
             <form class="form-inline">
 
                 <!-- 여기에 장고 써서 로그인 확인, 유저정보 표시 등 해야함-->
-
-                <font color=white>{{ name }}</font>
+                {% if user.is_authenticated %}
+                <font color=white>{{ user.username }}님 환영합니다!</font>
+                <input class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='{% url 'users:logout' %}'" value="로그아웃"></input>
+                {% else %}
+                <input class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='{% url 'users:login' %}'" value="로그인"></input>
+                {% endif %}
                 <div class=btn-margin>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
                 </div>
-                
             </form>
         </nav>
 
@@ -41,10 +43,12 @@
 
         <div class = container>
             <div class="input-group mb-3 input-group-lg">
-                <input id="search" type="text" class="form-control" placeholder="검색어 입력" aria-label="Recipient's username" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-                </div>
+                <form id = "searchForm" method="get" action = "{% url 'search:index' %}">
+                    <input id="search" type="text" class="form-control" placeholder="검색어 입력" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                    <input class="btn btn-outline-secondary" type="submit" id="button-addon2" value="검색"></input>
+                    </div>
+                </form>
             </div>
         </div>
 

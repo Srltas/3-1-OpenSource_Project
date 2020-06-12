@@ -3,7 +3,6 @@ from .models import users
 from django.contrib.auth.hashers import make_password, check_password
 # Create your views here.
 
-
 def home(requset):
     user_id = requset.session.get('user')
 
