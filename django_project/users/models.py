@@ -24,9 +24,9 @@ class users(models.Model):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField('유저명', max_length=30, unique=True)
-    email = models.EmailField('email', blank=True)
-    name = models.CharField('이름', max_length=30, blank=True)
+    username = models.CharField('아이디', max_length=30, unique=True)
+    email = models.EmailField('이메일', blank=True)
+    name = models.CharField('이름', max_length=30)
     is_staff = models.BooleanField('스태프 권한', default=False)
     is_active = models.BooleanField('사용중', default=True)
     date_joined = models.DateTimeField('가입일', default=timezone.now)
