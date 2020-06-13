@@ -3,16 +3,18 @@
 <html lang="ko-kr">
 <head>
     <meta charset="utf-8"/>
-    <title>login page</title>
+    <title>정강부 바보</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link href="{% static 'css/login.css'%}" rel="stylesheet">
-
+        <link href="../css/login_css.css" rel="stylesheet">
+        <style type="">
+        
+        </style>
     </head>
 
 <body class="text-center">
-    <form class="form-signin">
+    <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">로그인</h1>
     <form method="POST" action=".">
         {% csrf_token %}
