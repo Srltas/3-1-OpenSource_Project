@@ -1,56 +1,19 @@
-<!DOCTYPE html>
-<html lang="ko-kr">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>index page</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+{% extends 'base.html' %}
+{% block content %}
 
-        <style>
-            .container{
-                margin-top: 10%;
-            }
-
-            .btn-margin{
-                margin-left: 20px;
-            }
-
-        </style>
-    </head>
-
-    <body>
-
-        <nav class="navbar navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">EzLibs</a>
-            <form class="form-inline">
-
-                <!-- 여기에 장고 써서 로그인 확인, 유저정보 표시 등 해야함-->
-                {% if user.is_authenticated %}
-                <font color=white>{{ user.username }}님 환영합니다!</font>
-                <input class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='{% url 'users:logout' %}'" value="로그아웃"></input>
-                {% else %}
-                <input class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="location.href='{% url 'users:login' %}'" value="로그인"></input>
-                {% endif %}
-                <div class=btn-margin>
-                </div>
-            </form>
-        </nav>
-
-        <div class="row mt-5">
-            <div class="col-12">
-             </div>
-        </div>
-
-        <div class = container>
-            <div class="input-group mb-3 input-group-lg">
-                <form id = "searchForm" method="get" action = "{% url 'search:index' %}">
-                    <input id="search" type="text" class="form-control" placeholder="검색어 입력" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                    <input class="btn btn-outline-secondary" type="submit" id="button-addon2" value="검색"></input>
-                    </div>
-                </form>
+<div class="row mt-5">
+    <div class="col-12">
+    </div>
+</div>
+<div class = container>
+    <div class="input-group mb-3 input-group-lg">
+        <form id = "searchForm" method="get" action = "{% url 'search:index' %}">
+            <input id="search" type="text" class="form-control" placeholder="검색어 입력" name="kw" value="{{ kw|default_if_none:'' }}" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <input class="btn btn-outline-secondary" type="submit" id="button-addon2" value="검색">
             </div>
-        </div>
+        </form>
+    </div>
+</div>
 
-    </body>
-</html>
+{% endblock %}

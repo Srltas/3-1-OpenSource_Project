@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="ko-kr">
-<head>
-    <title>회원 가입</title>
+{% extends 'base.html' %}
+{% block content %}
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
         function onCheckBox(checkBox){
             var obj = document.getElementsByName("gender");
@@ -16,97 +14,72 @@
 
     </script>
 
-    <meta charset="utf-8">
-    <meta name="viwport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="/static/bootstrap.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <style>
-
-    </style>
-</head>
-
-
-
-
-<body>
 <div class = "container">
     <div class="row mt-5">
-    <div class="col-12 text-center">
-        <h1>회원가입</h1>
+        <div class="col-12 text-center">
+            <h1>회원가입</h1>
+        </div>
     </div>
-</div>
-<div class="row mt-5">
-    <div class="col-12">
-        {{ error }}
+    <div class="row mt-5">
+        <div class="col-12">
+            {{ error }}
+        </div>
     </div>
-</div>
-<div class="row mt-5">
-    <div class="col-12">
-        <form method="POST" action=".">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="name">이름</label>
-                <input type="text" class="form-control" id="name" name="name">
-            </div>
-            <div class="form-group">
-                <label for="username">아이디</label>
-                <input type="text" class="form-control" id="username" name="username">
-            </div>
-            <div class="form-group">
-                <label for="email">이메일</label>
-                <input type="email" class="form-control" id="email" name="email">
-            </div>
-            <div class="form-group">
-                <label for="password1">비밀번호</label>
-                <input type="password" class="form-control" id="password1" name="password1">
-            </div>
-            <div class="form-group">
-                <label for="password2">비밀번호 확인</label>
-                <input type="password" class="form-control" id="password2" name="password2">
-            </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <form method="POST" action=".">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="username">아이디</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password1">비밀번호</label>
+                    <input type="password" class="form-control" id="password1" name="password1">
+                </div>
+                <div class="form-group">
+                    <label for="password2">비밀번호 확인</label>
+                    <input type="password" class="form-control" id="password2" name="password2">
+                </div>
 
-            <div class="form-group">
-            <label for="checkBox">성별확인</label>
-            <div>
-   
-            <div style="display:inline; width:50%; float:left; border:1px solid #ced4da; border-radius:0.2em; text-align:center">
-                <label for="checkBoxMale">
-                    <input type="checkbox" name="gender" id="checkBoxMale" value="M" onclick="onCheckBox(this)">남자</input>
-                </label>
-            </div>
-     
+                <div class="form-group">
+                    <label for="checkBoxMale">
+                        <input type="checkbox" name="gender" id="checkBoxMale" value="M" onclick="onCheckBox(this)">남자</input>
+                    </label>
 
-            
-            <div style="display:inline; width:50%; float:right; border:1px solid #ced4da; border-radius:0.2em; text-align:center">
-                <label for="checkBoxFemale">
-                    <input type="checkbox" name="gender" id="checkBoxFemale" value="F" onClick="onCheckBox(this)">여자</input>
-                </label>
-            </div>
-            <!-- 오류표시 Start -->
-            {% if form.errors %}
-            {% for field in form %}
-            {% for error in field.errors %}  <!-- 필드 오류를 출력한다. -->
-            <div class="alert alert-danger">
-                <strong>{{ field.label }}</strong>
-                {{ field.errors }}
-            </div>
-            {% endfor %}
-            {% endfor %}
-            {% for error in form.non_field_errors %}   <!-- 넌필드 오류를 출력한다. -->
-            <div class="alert alert-danger">
-                <strong>{{ error }}</strong>
-            </div>
-            {% endfor %}
-            {% endif %}
-            <!-- 오류표시 End -->
-            <button type="submit" class="btn btn-primary">등록</button>
-        </form>
+                    <label for="checkBoxFemale">
+                        <input type="checkbox" name="gender" id="checkBoxFemale" value="F" onClick="onCheckBox(this)">여자</input>
+                    </label>
+                </div>
+                <!-- 오류표시 Start -->
+                {% if form.errors %}
+                {% for field in form %}
+                {% for error in field.errors %}  <!-- 필드 오류를 출력한다. -->
+                <div class="alert alert-danger">
+                    <strong>{{ field.label }}</strong>
+                    {{ field.errors }}
+                </div>
+                {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}   <!-- 넌필드 오류를 출력한다. -->
+                <div class="alert alert-danger">
+                    <strong>{{ error }}</strong>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <!-- 오류표시 End -->
+                <button type="submit" class="btn btn-primary">등록</button>
+            </form>
+        </div>
     </div>
 </div>
-</div>
-</body>
-</head>
-</html>
+
+{% endblock %}
