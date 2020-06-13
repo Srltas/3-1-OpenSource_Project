@@ -6,7 +6,7 @@
     <script type="text/javascript">
 
         function onCheckBox(checkBox){
-            var obj = document.getElementsByName("checkbox1");
+            var obj = document.getElementsByName("gender");
             for(var i=0; i<obj.length; i++){
                 if(obj[i] != checkBox){
                     obj[i].checked=false;
@@ -62,23 +62,28 @@
 
             <div class="form-group">
                 <label for="checkBoxMale">
-                    <input type="checkbox" name="checkbox1" id="checkBoxMale" value="male" onclick="onCheckBox(this)">남자</input>
+                    <input type="checkbox" name="gender" id="checkBoxMale" value="M" onclick="onCheckBox(this)">남자</input>
                 </label>
 
                 <label for="checkBoxFemale">
-                    <input type="checkbox" name="checkbox1" id="checkBoxFemale" value="female" onClick="onCheckBox(this)">여자</input>
+                    <input type="checkbox" name="gender" id="checkBoxFemale" value="F" onClick="onCheckBox(this)">여자</input>
                 </label>
             </div>
             <!-- 오류표시 Start -->
             {% if form.errors %}
-            <div class="alert alert-danger" role="alert">
-                {% for field in form %}
-                {% if field.errors %}
+            {% for field in form %}
+            {% for error in field.errors %}  <!-- 필드 오류를 출력한다. -->
+            <div class="alert alert-danger">
                 <strong>{{ field.label }}</strong>
                 {{ field.errors }}
-                {% endif %}
-                {% endfor %}
             </div>
+            {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}   <!-- 넌필드 오류를 출력한다. -->
+            <div class="alert alert-danger">
+                <strong>{{ error }}</strong>
+            </div>
+            {% endfor %}
             {% endif %}
             <!-- 오류표시 End -->
             <button type="submit" class="btn btn-primary">등록</button>
