@@ -3,4 +3,47 @@
 
 <font color=black>{{ kw }}</font>
 
+<div class = "container">
+    <form id = "searchForm" method="get" action = "{% url 'search:index' %}">
+        <div class="input-group mb-3 input-group-lg">
+            <input id="search" type="text" class="form-control" placeholder="검색어 입력" name="kw" value="{{ kw|default_if_none:'' }}" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
+            </div>
+        </div>
+    </form>
+
+<div class="space" style="margin-top: 84px"></div>
+
+<div class="searchList">
+<ul class="resultList">
+    <li class="item">
+        <dl>
+        <!--
+            <dt class="tag">번호</dt>
+            <dd class="info">(1)<dd>
+        -->
+            <div class="leftInfo" style="float:left">
+                <dt class="tag">표지</dt>
+                <dd class="info">(대충 사진)</dd>
+            </div>
+        <!-- media 조정 필요-->
+            <div class="rightInfo" style="display:inline-block">
+                <dt class="tag">제목</dt>
+                <dd class="info">
+                    <a>(은하수를 여행하는 히치하이커들을 위한 안내서)</a>
+                </dd>
+                <dt class="tag">저자</dt>
+                <dd class="info">(더글러스 에덤스)</dd>
+                <dt class="tag">출판사</dt>
+                <dd class="info">(책세상)</dd>
+                <dt class="tag">출판년도</dt>
+                <dd class="info">(2004)</dd>
+            </div>
+        </dl>
+    </li>
+</ul>
+</div>
+</div>
+
 {% endblock %}
