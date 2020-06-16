@@ -3,10 +3,12 @@
 
 <font color=black>{{ kw }}</font>
 
-<div class = "container">
-    <form id = "searchForm" method="get" action = "{% url 'search:index' %}">
+<div class="container">
+    <form id="searchForm" method="get" action="{% url 'search:index' %}">
         <div class="input-group mb-3 input-group-lg">
-            <input id="search" type="text" class="form-control" placeholder="검색어 입력" name="kw" value="{{ kw|default_if_none:'' }}" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <input id="search" type="text" class="form-control" placeholder="검색어 입력" name="kw"
+                   value="{{ kw|default_if_none:'' }}" aria-label="Recipient's username"
+                   aria-describedby="button-addon2">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
             </div>
@@ -24,7 +26,7 @@
             {% endif %}
             <!-- 책 리스트 반복문 -->
             {% for item in items %}
-            <li class="item">
+            <li class="item" style="margin-top: 40px">
                 <dl>
                     <!--
                         <dt class="tag">번호</dt>
@@ -32,15 +34,15 @@
                     -->
                     <div class="leftInfo" style="float:left">
                         <dt class="tag">표지</dt>
-                        <a href="/">
-                            <img class="info" src="{{ item.image }}" href="/"></img>
+                        <a href="{% url 'search:detail' %}">
+                            <img class="info" src="{{ item.image }}" width="150" height="200"></img>
                         </a>
                     </div>
                     <!-- media 조정 필요-->
                     <div class="rightInfo" style="display:inline-block">
                         <dt class="tag">제목</dt>
                         <dd class="info">
-                            <a href="/">{{ item.title|striptags }}</a>
+                            <a href="{% url 'search:detail' %}">{{ item.title|striptags }}</a>
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
