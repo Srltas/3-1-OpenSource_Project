@@ -18,7 +18,7 @@
 <div class="searchList">
 <ul class="resultList">
     <!-- 책 리스트 반복문 -->
-    {% for i in "x"|rjust:"10" %}
+    {% for item in items %}
     <li class="item">
         <dl>
         <!--
@@ -33,14 +33,20 @@
             <div class="rightInfo" style="display:inline-block">
                 <dt class="tag">제목</dt>
                 <dd class="info">
-                    <a>(은하수를 여행하는 히치하이커들을 위한 안내서)</a>
+                    <a>{{ item.title }}</a>
                 </dd>
                 <dt class="tag">저자</dt>
-                <dd class="info">(더글러스 에덤스)</dd>
+                <dd class="info">
+                    <a>{{ item.author }}</a>
+                </dd>
                 <dt class="tag">출판사</dt>
-                <dd class="info">(책세상)</dd>
+                <dd class="info">
+                    <a>{{ item.publisher }}</a>
+                </dd>
                 <dt class="tag">출판년도</dt>
-                <dd class="info">(2004)</dd>
+                <dd class="info">
+                    <a>{{ item.pubdate }}</a>
+                </dd>
             </div>
         </dl>
     </li>
