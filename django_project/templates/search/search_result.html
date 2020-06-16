@@ -13,56 +13,58 @@
         </div>
     </form>
 
-<div class="space" style="margin-top: 84px"></div>
+    <div class="space" style="margin-top: 84px"></div>
 
-<div class="searchList">
-<ul class="resultList">
-    {% if error == 1 %}
-        <div class="error">
-            <a>검색 결과가 없습니다.</a>
-        </div>
-    {% endif %}
-    <!-- 책 리스트 반복문 -->
-    {% for item in items %}
-    <li class="item">
-        <dl>
-        <!--
-            <dt class="tag">번호</dt>
-            <dd class="info">(1)<dd>
-        -->
-            <div class="leftInfo" style="float:left">
-                <dt class="tag">표지</dt>
-                <dd class="info">(사진 예시)</dd>
+    <div class="searchList">
+        <ul class="resultList">
+            {% if error == 1 %}
+            <div class="error">
+                <a>검색 결과가 없습니다.</a>
             </div>
-        <!-- media 조정 필요-->
-            <div class="rightInfo" style="display:inline-block">
-                <dt class="tag">제목</dt>
-                <dd class="info">
-                    <a>{{ item.title }}</a>
-                </dd>
-                <dt class="tag">저자</dt>
-                <dd class="info">
-                    <a>{{ item.author }}</a>
-                </dd>
-                <dt class="tag">출판사</dt>
-                <dd class="info">
-                    <a>{{ item.publisher }}</a>
-                </dd>
-                <dt class="tag">출판년도</dt>
-                <dd class="info">
-                    <a>{{ item.pubdate }}</a>
-                </dd>
-            </div>
-        </dl>
-    </li>
-    {% endfor %}
-</ul>
-</div>
+            {% endif %}
+            <!-- 책 리스트 반복문 -->
+            {% for item in items %}
+            <li class="item">
+                <dl>
+                    <!--
+                        <dt class="tag">번호</dt>
+                        <dd class="info">(1)<dd>
+                    -->
+                    <div class="leftInfo" style="float:left">
+                        <dt class="tag">표지</dt>
+                        <a href="/">
+                            <img class="info" src="{{ item.image }}" href="/"></img>
+                        </a>
+                    </div>
+                    <!-- media 조정 필요-->
+                    <div class="rightInfo" style="display:inline-block">
+                        <dt class="tag">제목</dt>
+                        <dd class="info">
+                            <a href="/">{{ item.title|striptags }}</a>
+                        </dd>
+                        <dt class="tag">저자</dt>
+                        <dd class="info">
+                            <a>{{ item.author }}</a>
+                        </dd>
+                        <dt class="tag">출판사</dt>
+                        <dd class="info">
+                            <a>{{ item.publisher }}</a>
+                        </dd>
+                        <dt class="tag">출판년도</dt>
+                        <dd class="info">
+                            <a>{{ item.pubdate }}</a>
+                        </dd>
+                    </div>
+                </dl>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
-        {% if book_list.has_previous %}
+        {% if page_number_list.has_previous %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ book_list.previous_page_number }}">이전</a>
+            <a class="page-link" href="?page={{ page_number_list.previous_page_number }}">이전</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -70,21 +72,21 @@
         </li>
         {% endif %}
         <!-- 페이지리스트 -->
-        {% for page_number in book_list.paginator.page_range %}
-            {% if page_number == book_list.number %}
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-            </li>
-            {% endif %}
+        {% for page_number in page_number_list.paginator.page_range %}
+        {% if page_number == page_number_list.number %}
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% endif %}
         {% endfor %}
         <!-- 다음페이지 -->
-        {% if book_list.has_next %}
+        {% if page_number_list.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ book_list.next_page_number }}">다음</a>
+            <a class="page-link" href="?page={{ page_number_list.next_page_number }}">다음</a>
         </li>
         {% else %}
         <li class="page-item disabled">
