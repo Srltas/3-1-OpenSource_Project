@@ -20,10 +20,18 @@
     <div>
         {{ error }}
     </div>
-    <button class="btn btn-primary" type="submit">로그인</button>
-    <dib>
-        <a href="{%url 'users:signup' %}" class="link_join" >회원가입</a>
-    </dib>
+
+    <div>
+    <button class="btn btn-primary" type="submit" style="float:left">로그인</button>
+
+    <button class="btn btn-primary" type="button" style="inline-block: border; margin-left: 30px" onclick="location.href='{%url 'users:signup' %}'">회원가입</button>
+
+<!--
+    <div style="display: inline-block; border: 1px solid gray; margin-left: 30px; height: 38px; width: 74px">
+        <a href="{%url 'users:signup' %}" class="link_join" style="">회원가입</a>
+    </div>
+-->
+    </div>
 </form>
 
 <p class="mt-5 mb-3 text-muted">&copy; 살려줘.....</p>
