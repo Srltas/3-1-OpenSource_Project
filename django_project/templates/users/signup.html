@@ -14,19 +14,14 @@
 
     </script>
 
-<div class = "container">
+<div class="container">
     <div class="row mt-5">
         <div class="col-12 text-center">
             <h1>회원가입</h1>
         </div>
     </div>
-    <div class="row mt-5">
-        <div class="col-12">
-            {{ error }}
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-12">
+
+        <div class="col-12" style="margin-top: 100px">
             <form method="POST" action=".">
                 {% csrf_token %}
                 <div class="form-group">
@@ -63,7 +58,7 @@
                 {% if form.errors %}
                 {% for field in form %}
                 {% for error in field.errors %}  <!-- 필드 오류를 출력한다. -->
-                <div class="alert alert-danger">
+                <div class="alert alert-danger" style="max-height: 100px">
                     <strong>{{ field.label }}</strong>
                     {{ field.errors }}
                 </div>
@@ -80,6 +75,5 @@
             </form>
         </div>
     </div>
-</div>
 
 {% endblock %}
