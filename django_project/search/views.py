@@ -15,6 +15,9 @@ def index(request):
 
     return render(request, 'search/search_result.html', page_list)
 
+def detail(request):
+    return render(request, 'search/search_detail.html')
+
 
 '''
 도서 검색 함수
