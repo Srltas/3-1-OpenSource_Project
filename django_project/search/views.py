@@ -5,16 +5,17 @@ import json
 
 # Create your views here.
 def index(request):
-    kw = request.GET.get('kw', '')
-
     # 입력 파라미터
+    kw = request.GET.get('kw')
     page = request.GET.get('page', 1) # 페이지
 
-    # 조회
-    page_list = lib_search(kw, page)
+    if kw == '':
+        page_list = {'error' : 1}
+    else:
+        # 조회
+        page_list = lib_search(kw, page)
 
     return render(request, 'search/search_result.html', page_list)
-
 
 '''
 도서 검색 함수
@@ -48,11 +49,11 @@ def lib_search(title, page=1):
 
     # 최대 100페이지 제한
     if page > 100:
-        page = '1000'
+        curPage = '1000'
     else:
-        page = str(page * 10 - 9)
+        curPage = str(page * 10 - 9)
 
-    url = "https://openapi.naver.com/v1/search/book.json?query=" + encText + "&start=" + page  # json 결과
+    url = "https://openapi.naver.com/v1/search/book.json?query=" + encText + "&start=" + curPage  # json 결과
     request = urllib.request.Request(url)
     request.add_header("X-Naver-Client-Id", client_id)
     request.add_header("X-Naver-Client-Secret", client_secret)
@@ -68,6 +69,10 @@ def lib_search(title, page=1):
             json_data['lastPage'] = 100
         else:
             json_data['lastPage'] = int(json_data['total'] / 10 + 1)
+
+        # 페이지 리스트 추가
+        pageP = int(page / 10)
+        json_data['pageList'] = [i for i in range(pageP+1, pageP+11)]
 
         print(json_data)
         return json_data
