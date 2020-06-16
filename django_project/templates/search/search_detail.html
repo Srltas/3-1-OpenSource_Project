@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<div class="container">
+    <form id = "searchForm" method="get" action = "{% url 'search:index' %}">
+            <div class="input-group mb-3 input-group-lg">
+                <input id="search" type="text" class="form-control" placeholder="검색어 입력" name="kw" value="{{ kw|default_if_none:'' }}" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">검색</button>
+                </div>
+            </div>
+    </form>
+
+    <div class="space" style="margin-top: 84px"></div>
+
+    
+
+</div>
+
+{% endblock %}
