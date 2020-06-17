@@ -46,6 +46,7 @@ def bookInfo(isbn):
         json_data = json_data['response']
 
         print(json_data)
+        return json_data
     else:
         print("Error Code:" + rescode)
         return rescode
