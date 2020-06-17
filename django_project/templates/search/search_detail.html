@@ -46,23 +46,22 @@ function showPosition(position) {
                         <dd class="info">(1)<dd>
                     -->
 
-
                     <div class="leftInfo" style="float: left">
                         <dt class="tag">제목</dt>
                         <dd class="info">
-                            <a>{{ item.title }}</a>
+                            <a>{{ detail[0].book.bookname }}</a>
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
-                            <a>{{ item.author }}</a>
+                            <a>{{ detail.book.authors }}</a>
                         </dd>
                         <dt class="tag">출판사</dt>
                         <dd class="info">
-                            <a>{{ item.publisher }}</a>
+                            <a>{{ isbn.publisher }}</a>
                         </dd>
                         <dt class="tag">출판년도</dt>
                         <dd class="info">
-                            <a>{{ item.pubdate }}</a>
+                            <a>{{ isbn.publication_year }}</a>
                         </dd>
                     </div>
 
