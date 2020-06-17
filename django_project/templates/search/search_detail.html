@@ -49,25 +49,33 @@ function showPosition(position) {
                     <div class="leftInfo" style="float: left">
                         <dt class="tag">제목</dt>
                         <dd class="info">
-                            <a>{{ detail[0].book.bookname }}</a>
+                            <a>{{ detail.0.book.bookname }}</a>
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
-                            <a>{{ detail.book.authors }}</a>
+                            <a>{{ detail.0.book.authors }}</a>
                         </dd>
                         <dt class="tag">출판사</dt>
                         <dd class="info">
-                            <a>{{ isbn.publisher }}</a>
+                            <a>{{ detail.0.book.publisher }}</a>
                         </dd>
-                        <dt class="tag">출판년도</dt>
+                        <dt class="tag">출판일자</dt>
                         <dd class="info">
-                            <a>{{ isbn.publication_year }}</a>
+                            <a>{{ detail.0.book.publication_date }}</a>
+                        </dd>
+                        <dt class="tag">주제분류</dt>
+                        <dd class="info">
+                            <a>{{ detail.0.book.class_no }}</a>
+                        </dd>
+                        <dt class="tag">책소개</dt>
+                        <dd class="info">
+                            <a>{{ detail.0.book.description }}</a>
                         </dd>
                     </div>
 
                     <div class="rightInfo" style="display:inline-block; margin-left: 70%">
                         <dt class="tag">표지</dt>
-                        <dd class="info">(사진 예시)</dd>
+                        <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
                     </div>
 
                 </dl>
