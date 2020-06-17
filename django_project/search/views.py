@@ -75,10 +75,13 @@ def lib_search(title, page=1):
         response_body = response.read()
         json_data = json.loads(response_body.decode('utf-8'))
         # book_list = json_data["items"]
-
         # 책 리스트가 비어있으면 오류 반환
         if not json_data['items']:
             return {'error' : True}
+
+        # isbn 13자리 주소만 남기기
+        for item in json_data['items']:
+            item['isbn'] = item['isbn'].split(' ')[1]
 
         # 검색한 단어 추가
         json_data['keyword'] = title
