@@ -19,7 +19,7 @@
 
     <div class="searchList">
         <ul class="resultList">
-            {% if error == 1 %}
+            {% if error %}
             <div class="error">
                 <a>검색 결과가 없습니다.</a>
             </div>
@@ -34,7 +34,7 @@
                     -->
                     <div class="leftInfo" style="float:left">
                         <dt class="tag">표지</dt>
-                        <a href="{% url 'search:detail' %}">
+                        <a href="{% url 'book:detail' item.isbn %}">
                             <img class="info" src="{{ item.image }}" width="150" height="200"></img>
                         </a>
                     </div>
@@ -42,23 +42,19 @@
                     <div class="rightInfo" style="display:inline-block">
                         <dt class="tag">제목</dt>
                         <dd class="info">
-                            <a style="word-break:keep-all" href="{% url 'search:detail' %}">{{ item.title|striptags }}</a>
+                            <a href="{% url 'book:detail' item.isbn %}">{{ item.title|striptags }}</a>
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
-                            <a>{{ item.author }}</a>
+                            <a href="?kw={{ item.author|striptags }}">{{ item.author|striptags }}</a>
                         </dd>
                         <dt class="tag">출판사</dt>
                         <dd class="info">
-                            <a>{{ item.publisher }}</a>
+                            <a href="?kw={{ item.publisher|striptags }}">{{ item.publisher|striptags }}</a>
                         </dd>
                         <dt class="tag">출판년도</dt>
                         <dd class="info">
                             <a>{{ item.pubdate }}</a>
-                        </dd>
-                        <dt class="tag">설명</dt>
-                        <dd class="info">
-                            <a>설며어어어어ㅓㅇ<a>
                         </dd>
                     </div>
                 </dl>
@@ -68,9 +64,9 @@
     </div>
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
-        {% if page_number_list.has_previous %}
+        {% if hasPrevious %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_number_list.previous_page_number }}">이전</a>
+            <a class="page-link" href="?kw={{ keyword }}&page={{ previousPageNumber }}">이전</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -78,21 +74,21 @@
         </li>
         {% endif %}
         <!-- 페이지리스트 -->
-        {% for page_number in page_number_list.paginator.page_range %}
-        {% if page_number == page_number_list.number %}
+        {% for page_number in pageList %}
+        {% if page_number == number %}
         <li class="page-item active" aria-current="page">
-            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            <a class="page-link" href="?kw={{ keyword }}&page={{ page_number }}">{{ page_number }}</a>
         </li>
         {% else %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            <a class="page-link" href="?kw={{ keyword }}&page={{ page_number }}">{{ page_number }}</a>
         </li>
         {% endif %}
         {% endfor %}
         <!-- 다음페이지 -->
-        {% if page_number_list.has_next %}
+        {% if hasNext %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_number_list.next_page_number }}">다음</a>
+            <a class="page-link" href="?kw={{ keyword }}&page={{ nextPageNumber }}">다음</a>
         </li>
         {% else %}
         <li class="page-item disabled">
