@@ -42,7 +42,7 @@
                     <div class="rightInfo" style="display:inline-block">
                         <dt class="tag">제목</dt>
                         <dd class="info">
-                            <a href="{% url 'search:detail' %}">{{ item.title|striptags }}</a>
+                            <a style="word-break:keep-all" href="{% url 'search:detail' %}">{{ item.title|striptags }}</a>
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
@@ -55,6 +55,10 @@
                         <dt class="tag">출판년도</dt>
                         <dd class="info">
                             <a>{{ item.pubdate }}</a>
+                        </dd>
+                        <dt class="tag">설명</dt>
+                        <dd class="info">
+                            <a>설며어어어어ㅓㅇ<a>
                         </dd>
                     </div>
                 </dl>
