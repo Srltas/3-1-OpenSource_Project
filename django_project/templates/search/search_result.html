@@ -19,7 +19,7 @@
 
     <div class="searchList">
         <ul class="resultList">
-            {% if error == 1 %}
+            {% if error %}
             <div class="error">
                 <a>검색 결과가 없습니다.</a>
             </div>
@@ -64,9 +64,9 @@
     </div>
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
-        {% if page_number_list.has_previous %}
+        {% if hasPrevious %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_number_list.previous_page_number }}">이전</a>
+            <a class="page-link" href="?kw={{ keyword }}&page={{ previousPageNumber }}">이전</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -74,21 +74,21 @@
         </li>
         {% endif %}
         <!-- 페이지리스트 -->
-        {% for page_number in page_number_list.paginator.page_range %}
-        {% if page_number == page_number_list.number %}
+        {% for page_number in pageList %}
+        {% if page_number == number %}
         <li class="page-item active" aria-current="page">
-            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            <a class="page-link" href="?kw={{ keyword }}&page={{ page_number }}">{{ page_number }}</a>
         </li>
         {% else %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            <a class="page-link" href="?kw={{ keyword }}&page={{ page_number }}">{{ page_number }}</a>
         </li>
         {% endif %}
         {% endfor %}
         <!-- 다음페이지 -->
-        {% if page_number_list.has_next %}
+        {% if hasNext %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_number_list.next_page_number }}">다음</a>
+            <a class="page-link" href="?kw={{ keyword }}&page={{ nextPageNumber }}">다음</a>
         </li>
         {% else %}
         <li class="page-item disabled">
