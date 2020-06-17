@@ -34,7 +34,7 @@
                     -->
                     <div class="leftInfo" style="float:left">
                         <dt class="tag">표지</dt>
-                        <a href="{% url 'search:detail' %}">
+                        <a href="{% url 'book:detail' item.isbn %}">
                             <img class="info" src="{{ item.image }}" width="150" height="200"></img>
                         </a>
                     </div>
@@ -42,7 +42,7 @@
                     <div class="rightInfo" style="display:inline-block">
                         <dt class="tag">제목</dt>
                         <dd class="info">
-                            <a href="{% url 'search:detail' %}">{{ item.title|striptags }}</a>
+                            <a href="{% url 'book:detail' item.isbn %}">{{ item.title|striptags }}</a>
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
