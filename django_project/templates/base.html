@@ -58,6 +58,24 @@
             
         </style>
     </head>
+
+    </script type="text/javascript">
+        var x = document.getElementById("demo");
+
+        function getLocation(){
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+            else{
+                alert("에러.");
+            }
+        }
+
+        function.showPosition(position) {
+            x.innerHTML = "위도 : " + position.coords.latitude
+                        + "경도 : " + position.coords.longitude;
+        }
+    </script>
 <body>
 {% include "navbar.html" %}
 {% block content %}
