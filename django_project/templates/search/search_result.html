@@ -46,11 +46,11 @@
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
-                            <a>{{ item.author }}</a>
+                            <a href="?kw={{ item.author|striptags }}">{{ item.author|striptags }}</a>
                         </dd>
                         <dt class="tag">출판사</dt>
                         <dd class="info">
-                            <a>{{ item.publisher }}</a>
+                            <a href="?kw={{ item.publisher|striptags }}">{{ item.publisher|striptags }}</a>
                         </dd>
                         <dt class="tag">출판년도</dt>
                         <dd class="info">
