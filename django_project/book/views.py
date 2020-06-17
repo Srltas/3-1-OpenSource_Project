@@ -5,4 +5,4 @@ from django.http import HttpResponse
 
 
 def bookDetail(request, book_id):
-    return HttpResponse(book_id)
+    return render(request, 'search/search_detail.html')
