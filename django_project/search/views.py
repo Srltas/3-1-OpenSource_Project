@@ -114,7 +114,7 @@ def lib_search(title, page=1):
         # 현재페이지 번호 추가
         json_data['number'] = page
 
-        print(json_data)
+        #print(json_data)
         return json_data
     else:
         print("Error Code:" + rescode)

@@ -46,7 +46,33 @@
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
-                            <a href="?kw={{ item.author|striptags }}">{{ item.author|striptags }}</a>
+                            <script type="text/javascript">
+
+                                    console.log("substring online");
+                                    var author = "{{ item.author|striptags }}";
+                                    var authorArray = author.split('|');
+                                    
+                                    for (var i=0; i < authorArray.length; i++){
+                                        
+
+                                        console.log("console.log"+authorArray[i]);
+
+                                        document.write("<a href=\"?kw="+authorArray[i]+"\">");
+                                        document.write(authorArray[i]);
+                                        document.write("</a>");
+
+                                        if(i == (authorArray.length - 1)) {
+                                            break;
+                                        }
+                                        document.write(" | ");
+                                    }
+                                
+                            </script>
+                            <!--
+                               
+                                 <a id="author" href="?kw={{ item.author|striptags }}">{{ item.author|striptags }}</a>
+                            -->
+                            
                         </dd>
                         <dt class="tag">출판사</dt>
                         <dd class="info">
