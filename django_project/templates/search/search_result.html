@@ -3,6 +3,17 @@
 
 <font color=black>{{ kw }}</font>
 
+<style>
+    .title_text {
+        font-family: sans-serif;
+        font-size: 18px;
+        width:800px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
 <div class="container">
     <form id="searchForm" method="get" action="{% url 'search:index' %}">
         <div class="input-group mb-3 input-group-lg">
@@ -39,10 +50,12 @@
                         </a>
                     </div>
                     <!-- media 조정 필요-->
-                    <div class="rightInfo" style="display:inline-block">
+                    <div class="rightInfo" style="display:inline-block" >
                         <dt class="tag">제목</dt>
-                        <dd class="info">
-                            <a href="{% url 'book:detail' item.isbn %}">{{ item.title|striptags }}</a>
+                        <dd class="info" >
+                            <a href="{% url 'book:detail' item.isbn %}">
+                                <p class="title_text">{{ item.title|striptags }}</p>
+                            </a>
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
