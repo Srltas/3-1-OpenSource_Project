@@ -8,20 +8,33 @@ var x = document.getElementById("demo");
 
 function getLocation() {
     //alert("getLocation");
+
+    
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(function(pos){
+            sendLocation(pos.coords.latitude, pos.coords.longitude);
+            /*
             $('#latitude').html(pos.coords.latitude);
             $('#longitude').html(pos.coords.longitude);
+            */
         });
     }
     else{
         alert("위치를 얻을 수 없습니다.");
     }
+
+
 }
+
 function showPosition(position) {
     x.innerHTML = "위도:" + position.coords.latitude + " 경도:" + position.coords.longitude;
 }
 
+function sendLocation(latitude, longitude) {
+    var string = './?longitude='+longitude+'&latitude='+latitude;
+
+    location.href=string;
+}
 </script>
 
 <div class="container">
@@ -87,10 +100,15 @@ function showPosition(position) {
         -->
 
         <div class="titleArea">
-            <h3 class="tableTitle">테이블 예시</h3>
+            <h3 class="tableTitle">위치</h3>
             <button onclick="getLocation()">내 위치</button>
             <a>위도:<a id="latitude"></a></a>
             <a>경도:<a id="longitude"></a></a>
+            
+        </div>
+
+        <div class="titleArea">
+            <h3 class="tableTitle">테이블 예시</h3>
         </div>
 
         <div class="infoArea" style="border: 1px solid gray">
