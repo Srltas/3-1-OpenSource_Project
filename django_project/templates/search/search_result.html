@@ -54,16 +54,42 @@
                         <dt class="tag">제목</dt>
                         <dd class="info" >
                             <a href="{% url 'book:detail' item.isbn %}">
-                                <p class="title_text">{{ item.title|safe }}</p>
+                                <p class="title_text">{{ item.title|striptags }}</p>
                             </a>
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
-                            <a href="?kw={{ item.author|striptags }}">{{ item.author|safe }}</a>
+                            <script type="text/javascript">
+
+                                    console.log("substring online");
+                                    var author = "{{ item.author|striptags }}";
+                                    var authorArray = author.split('|');
+                                    
+                                    for (var i=0; i < authorArray.length; i++){
+                                        
+
+                                        console.log("console.log"+authorArray[i]);
+
+                                        document.write("<a href=\"?kw="+authorArray[i]+"\">");
+                                        document.write(authorArray[i]);
+                                        document.write("</a>");
+
+                                        if(i == (authorArray.length - 1)) {
+                                            break;
+                                        }
+                                        document.write(" | ");
+                                    }
+                                
+                            </script>
+                            <!--
+                               
+                                 <a id="author" href="?kw={{ item.author|striptags }}">{{ item.author|striptags }}</a>
+                            -->
+                            
                         </dd>
                         <dt class="tag">출판사</dt>
                         <dd class="info">
-                            <a href="?kw={{ item.publisher|striptags }}">{{ item.publisher|safe }}</a>
+                            <a href="?kw={{ item.publisher|striptags }}">{{ item.publisher|striptags }}</a>
                         </dd>
                         <dt class="tag">출판년도</dt>
                         <dd class="info">
