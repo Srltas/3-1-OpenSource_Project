@@ -76,7 +76,10 @@ def lib_search(title, page=1):
 
         # isbn 13자리 주소만 남기기
         for item in json_data['items']:
-            item['isbn'] = item['isbn'].split(' ')[1]
+            if item['isbn'] !='':
+                item['isbn'] = item['isbn'].split(' ')[1]
+            else:
+                item['isbn'] = '0'
 
         # 검색한 단어 추가
         json_data['keyword'] = title
