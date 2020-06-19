@@ -54,7 +54,7 @@
                         <dt class="tag">제목</dt>
                         <dd class="info" >
                             <a href="{% url 'book:detail' item.isbn %}">
-                                <p class="title_text">{{ item.title|striptags }}</p>
+                                <p class="title_text">{{ item.title|safe }}</p>
                             </a>
                         </dd>
                         <dt class="tag">저자</dt>
