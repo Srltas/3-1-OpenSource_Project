@@ -10,7 +10,7 @@ import math
 def bookDetail(request, book_id):
     longitude = request.GET.get('longitude', -1)
     latitude  = request.GET.get('latitude', -1)
-    distance = request.GET.get('latitude', 5)
+    distance = request.GET.get('distance', 5)
 
     content = bookInfo(book_id)
     if(longitude != -1):
