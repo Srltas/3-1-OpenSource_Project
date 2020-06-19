@@ -3,9 +3,6 @@
 
 <script type="text/javascript">
 
-//x를 demo랑 연결
-var x = document.getElementById("demo");
-
 function getLocation() {
     //alert("getLocation");
 
@@ -59,38 +56,34 @@ function sendLocation(latitude, longitude) {
                         <dd class="info">(1)<dd>
                     -->
 
-                    <div class="leftInfo" style="float: left">
+                    <div class="rightInfo" style="display:inline-block; float: right">
+                        <dt class="tag">표지</dt>
+                        <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
+
+                    </div>
+                    <div class="leftInfo">
                         <dt class="tag">제목</dt>
                         <dd class="info">
-                            <a>{{ detail.0.book.bookname }}</a>
+                            <a style="font-size:22px;">{{ detail.0.book.bookname }}</a>
                         </dd>
                         <dt class="tag">저자</dt>
                         <dd class="info">
-                            <a>{{ detail.0.book.authors }}</a>
+                            <a><b>저자</b> : {{ detail.0.book.authors }}</a>
                         </dd>
                         <dt class="tag">출판사</dt>
                         <dd class="info">
-                            <a>{{ detail.0.book.publisher }}</a>
+                            <a><b>출판사</b> : {{ detail.0.book.publisher }}</a>
                         </dd>
                         <dt class="tag">출판일자</dt>
                         <dd class="info">
-                            <a>{{ detail.0.book.publication_date }}</a>
-                        </dd>
-                        <dt class="tag">주제분류</dt>
-                        <dd class="info">
-                            <a>{{ detail.0.book.class_no }}</a>
+                            <a><b>출판일자</b> : {{ detail.0.book.publication_date }}</a>
                         </dd>
                         <dt class="tag">책소개</dt>
                         <dd class="info">
+                            <div><b>[책소개]</b></div>
                             <a>{{ detail.0.book.description }}</a>
                         </dd>
                     </div>
-
-                    <div class="rightInfo" style="display:inline-block; margin-left: 70%">
-                        <dt class="tag">표지</dt>
-                        <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
-                    </div>
-
                 </dl>
             </li>
         </ul>
@@ -98,7 +91,6 @@ function sendLocation(latitude, longitude) {
         <!--
             도서관
         -->
-
         <div class="titleArea">
             <h3 class="tableTitle">위치</h3>
             <button onclick="getLocation()">내 위치</button>
@@ -114,6 +106,7 @@ function sendLocation(latitude, longitude) {
         <div class="infoArea" style="border: 1px solid gray">
             <thead>
             <tr>
+                여기에 정보 들어가나?
             </tr>
             </thead>
 
