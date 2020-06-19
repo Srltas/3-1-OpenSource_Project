@@ -8,8 +8,13 @@ import math
 
 
 def bookDetail(request, book_id):
-    print(searchLibraryWithBooks(book_id, 127.0608889, 36.7985417))
+    longitude = request.GET.get('longitude', -1)
+    latitude  = request.GET.get('latitude', -1)
+    distance = request.GET.get('latitude', 5)
+
     content = bookInfo(book_id)
+    if(longitude != -1):
+        content['libs'] = searchLibraryWithBooks(book_id, longitude, latitude, distance=distance)
 
     return render(request, 'book/detail.html', content)
 
