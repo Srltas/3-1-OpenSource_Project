@@ -8,14 +8,15 @@ import math
 
 
 def bookDetail(request, book_id):
-    longitude = request.GET.get('longitude', -1)
-    latitude  = request.GET.get('latitude', -1)
+    longitude = float(request.GET.get('longitude', -1))
+    latitude = float(request.GET.get('latitude', -1))
     distance = request.GET.get('distance', 5)
 
     content = bookInfo(book_id)
     if(longitude != -1):
         content['libs'] = searchLibraryWithBooks(book_id, longitude, latitude, distance=distance)
 
+    print(content)
     return render(request, 'book/detail.html', content)
 
 
@@ -80,7 +81,7 @@ lib 도서관
     longitude 경도
     homepage 홈페이지 URL
     closed 휴관일
-    operationTime 운영시간
+    operatingTime 운영시간
     BookCount 단행본수
     distance 내 위치에서 도서관까지 거리(km)
     result 도서 소장여부('Y' or 'N')

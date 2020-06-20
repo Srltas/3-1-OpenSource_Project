@@ -25,44 +25,75 @@
                 {% csrf_token %}
                 <div class="form-group" style="width:400px;">
                     <label for="name" style="float:left">이름</label>
-                    <input type="text" class="form-control" id="name" name="name" style="width:400px; height:35px;">
+                    {% if form.name.errors %}
+                    <input type="text" class="form-control is-invalid" id="name" name="name" value="{{ form.name.value|default_if_none:'' }}" style="width:400px; height:35px;">
+                    <div class="invalid-feedback">
+                        {{ form.name.errors.0 }}
+                    </div>
+                    {% else %}
+                    <input type="text" class="form-control" id="name" name="name" value="{{ form.name.value|default_if_none:'' }}" style="width:400px; height:35px;">
+                    {% endif %}
                 </div>
                 <div class="form-group" style="width:400px;">
                     <label for="username" style="float:left">아이디</label>
-                    <input type="text" class="form-control" id="username" name="username"
-                           style="width:400px; height:35px;">
+                    {% if form.username.errors %}
+                    <input type="text" class="form-control is-invalid" id="username" name="username" value="{{ form.username.value|default_if_none:'' }}" style="width:400px; height:35px;">
+                    <div class="invalid-feedback">
+                        {{ form.username.errors.0 }}
+                    </div>
+                    {% else %}
+                    <input type="text" class="form-control" id="username" name="username" value="{{ form.username.value|default_if_none:'' }}" style="width:400px; height:35px;">
+                    {% endif %}
                 </div>
                 <div class="form-group" style="width:400px;">
                     <label for="email" style="float:left">이메일</label>
-                    <input type="email" class="form-control" id="email" name="email" style="width:400px; height:35px;">
+                    {% if form.email.errors %}
+                    <input type="email" class="form-control is-invalid" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}" style="width:400px; height:35px;">
+                    <div class="invalid-feedback">
+                        {{ form.email.errors.0 }}
+                    </div>
+                    {% else %}
+                    <input type="email" class="form-control" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}" style="width:400px; height:35px;">
+                    {% endif %}
                 </div>
                 <div class="form-group" style="width:400px;">
                     <label for="password1" style="float:left">비밀번호</label>
-                    <input type="password" class="form-control" id="password1" name="password1"
-                           style="width:400px; height:35px;">
+                    {% if form.password1.errors %}
+                    <input type="password" class="form-control is-invalid" id="password1" name="password1" value="{{ form.password1.value|default_if_none:'' }}" style="width:400px; height:35px;">
+                    <div class="invalid-feedback">
+                        {{ form.password1.errors.0 }}
+                    </div>
+                    {% else %}
+                    <input type="password" class="form-control" id="password1" name="password1" value="{{ form.password1.value|default_if_none:'' }}" style="width:400px; height:35px;">
+                    {% endif %}
                 </div>
                 <div class="form-group" style="width:400px;">
                     <label for="password2" style="float:left">비밀번호 확인</label>
-                    <input type="password" class="form-control" id="password2" name="password2"
-                           style="width:400px; height:35px;">
+                    {% if form.password2.errors %}
+                    <input type="password" class="form-control is-invalid" id="password2" name="password2" value="{{ form.password2.value|default_if_none:'' }}" style="width:400px; height:35px;">
+                    <div class="invalid-feedback">
+                        {{ form.password2.errors.0 }}
+                    </div>
+                    {% else %}
+                    <input type="password" class="form-control" id="password2" name="password2" value="{{ form.password2.value|default_if_none:'' }}" style="width:400px; height:35px;">
+                    {% endif %}
                 </div>
 
                 <div class="form-group">
                     <label for="checkBoxMale">
-                        <input type="checkbox" name="gender" id="checkBoxMale" value="M"
-                               onclick="onCheckBox(this)">남자</input>
+                        <input type="checkbox" name="gender" id="checkBoxMale" value="M" onclick="onCheckBox(this)">남자</input>
                     </label>
 
                     <label for="checkBoxFemale">
-                        <input type="checkbox" name="gender" id="checkBoxFemale" value="F" onClick="onCheckBox(this)"
-                               style="margin-left:5px;">여자</input>
+                        <input type="checkbox" name="gender" id="checkBoxFemale" value="F" onClick="onCheckBox(this)" style="margin-left:5px;">여자</input>
                     </label>
+                    {% if form.gender.errors %}
+                    <div class="alert alert-danger" style="width:300px;">
+                        <strong>{{ form.gender.label }}</strong>
+                        {{ form.gender.errors.0 }}
+                    </div>
+                    {% endif %}
                 </div>
-
-                <div>
-                    {% include "form_errors.html" %}
-                </div>
-
                 <div>
                     <button type="submit" class="btn btn-primary" style="width: 400px; margin-top: 30px;">등록</button>
                 </div>

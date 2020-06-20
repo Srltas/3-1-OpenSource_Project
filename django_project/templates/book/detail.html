@@ -32,6 +32,7 @@ function sendLocation(latitude, longitude) {
 
     location.href=string;
 }
+
 </script>
 
 <div class="container">
@@ -80,7 +81,7 @@ function sendLocation(latitude, longitude) {
                         </dd>
                         <dt class="tag">책소개</dt>
                         <dd class="info">
-                            <div><b>[책소개]</b></div>
+                            <div><b>책소개</b></div>
                             <a>{{ detail.0.book.description }}</a>
                         </dd>
                     </div>
@@ -91,22 +92,41 @@ function sendLocation(latitude, longitude) {
         <!--
             도서관
         -->
-        <div class="titleArea">
-            <h3 class="tableTitle">위치</h3>
-            <button onclick="getLocation()">내 위치</button>
-            <a>위도:<a id="latitude"></a></a>
-            <a>경도:<a id="longitude"></a></a>
-            
-        </div>
+        <div class="libraryTableArea">
+            <div style="position:relative;">
+                <p class="tableTitle">도서관 리스트</p>
 
-        <div class="titleArea">
-            <h3 class="tableTitle">테이블 예시</h3>
+                <table class="table table-hover" disabled="">
+                    <thead>
+                    <tr align="center">
+                        <th scope="col">도서관명</th>
+                        <th scope="col">전화번호</th>
+                        <th scope="col">운영시간</th>
+                        <th scope="col">떨어진 거리</th>
+                        <th scope="col">소장여부</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for library in libs %}
+                    <tr align="center">
+                        <td>{{ library.lib.libName }}</td>
+                        <td>{{ library.lib.tel }}</td>
+                        <td>{{ library.lib.operatingTime }}</td>
+                        <td>{{ library.lib.distance }}km</td>
+                        <td>{{ library.lib.result }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div style="position:relative; left:45%; top:50%;">
+                <button onclick="getLocation()" class="btn btn-info" >내 위치</button>
+            </div>
         </div>
-
         <div class="infoArea" style="border: 1px solid gray">
             <thead>
             <tr>
-                여기에 정보 들어가나?
+
             </tr>
             </thead>
 
