@@ -14,6 +14,7 @@ function getLocation() {
             $('#latitude').html(pos.coords.latitude);
             $('#longitude').html(pos.coords.longitude);
             */
+            document.getElementById("needHide").style.display="none";
         });
     }
     else{
@@ -120,20 +121,27 @@ function sendLocation(latitude, longitude) {
                 </table>
             </div>
             <div style="position:relative; left:45%; top:50%;">
-                <button onclick="getLocation()" class="btn btn-info" >내 위치</button>
+                <button  onclick="getLocation()" class="btn btn-info" id="needHide">내 위치</button>
+                <script>
+                    
+                </script>
             </div>
         </div>
+        <!--여기에 추천 책 리스트 입력-->
+        <div>
+            <h3 class="infoTitle">추천 책 목록</h3>
+        </div>
         <div class="infoArea" style="border: 1px solid gray">
-            <thead>
-            <tr>
-
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr>
-            </tr>
-            </tbody>
+            <ul>
+                <li>
+                    <div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                    </div>
+                </li>
+            </ul>
         </div>
 
         <div class="titleArea">
