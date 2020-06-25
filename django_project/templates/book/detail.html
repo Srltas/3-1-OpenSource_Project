@@ -14,6 +14,7 @@ function getLocation() {
             $('#latitude').html(pos.coords.latitude);
             $('#longitude').html(pos.coords.longitude);
             */
+            document.getElementById("needHide").style.display="none";
         });
     }
     else{
@@ -97,7 +98,7 @@ function sendLocation(latitude, longitude) {
             <div style="position:relative;">
                 <div>
                     <p class="tableTitle">도서관 리스트</p>
-
+                    <div style="float:right" class="settingLibs">
                     <!-- 거리 선택 dropdown -->
                     <div class="btn-group">
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
@@ -105,52 +106,57 @@ function sendLocation(latitude, longitude) {
                             거리
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
+                            <a class="dropdown-item" href="#">5km 이내</a>
+                            <a class="dropdown-item" href="#">10km 이내</a>
+                            <a class="dropdown-item" href="#">15km 이내</a>
+                            <a class="dropdown-item" href="#">20km 이내</a>
                         </div>
                     </div>
-                </div>
                 <button onclick="getLocation()" class="btn btn-info">내 위치</button>
-
-
+                </div>
                 <table class="table table-hover" disabled="">
                     <thead>
                     <tr align="center">
                         <th scope="col">도서관명</th>
-                        <th scope="col">전화번호</th>
+                    
                         <th scope="col">운영시간</th>
-                        <th scope="col">떨어진 거리</th>
+                        <th scope="col">거리</th>
                         <th scope="col">소장여부</th>
+                        <th scope="col">지도보기</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for library in libs %}
                     <tr align="center">
                         <td>{{ library.lib.libName }}</td>
-                        <td>{{ library.lib.tel }}</td>
+                        
                         <td>{{ library.lib.operatingTime }}</td>
                         <td>{{ library.lib.distance }}km</td>
                         <td>{{ library.lib.result }}</td>
+                        <td><button type="button" class="btn btn-success" href="#">지도</button></td>
                     </tr>
                     {% endfor %}
                     </tbody>
                 </table>
             </div>
+            <div style="position:relative; left:45%; top:50%;">
+            </div>
+        </div>
+        <!--여기에 추천 책 리스트 입력-->
+        <div>
+            <h3 class="infoTitle">추천 책 목록</h3>
         </div>
         <div class="infoArea" style="border: 1px solid gray">
-            <thead>
-            <tr>
-
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr>
-            </tr>
-            </tbody>
+            <ul>
+                <li>
+                    <div>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                    </div>
+                </li>
+            </ul>
         </div>
 
         <div class="titleArea">
