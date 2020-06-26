@@ -196,12 +196,14 @@ function setKilo(kilo){
                         </div>
                     {% endfor %}
                     -->
-                    {% for
+                    {% for list in -- %}
+                    {% if forloop.counter|remainder:3 == 1%}
                     <div class="swiper-slide">
+                    {% endif %}
                         <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
-                        <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
-                        <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
+                    {% if forloop.counter|remainder:3 == 0 %}
                     </div>
+                    {% endif %}
                     <div class="swiper-slide">
                        <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
                     </div>
