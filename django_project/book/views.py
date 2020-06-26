@@ -19,6 +19,7 @@ def bookDetail(request, book_id):
     distance = request.GET.get('distance', 5)
 
     content = bookInfo(book_id)
+    content['relatedBook'] = recommendedBooks(book_id)
     if(longitude != -1):
         content['libs'] = searchLibraryWithBooks(book_id, longitude, latitude, distance=distance)
 
@@ -169,3 +170,43 @@ def get_harversion_distance(x1, y1, x2, y2, round_decimal_digits=2):
            * math.sin(dLon / 2) * math.sin(dLon / 2))
     b = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     return round(R * b, round_decimal_digits)
+
+
+"""
+해당 창의 연관 도서 리스트 반환해주는 함수
+
+매개변수:
+isbn = 검색할 책의 isbn
+
+반환 리스트:
+resultNum 응답 결과 건수
+docs 목록
+    book 도서
+        no 순번
+        bookname 도서명
+        authors 저자명
+        publisher 출판사
+        publication_year 출판년도
+        isbn13 13 자리 ISBN
+        addition_symbol 부가기호
+        vol 권
+        class_no 주제분류
+        bookImageURL 도서 이미지 URL
+"""
+def recommendedBooks(isbn):
+    authKey = '1785223b91685a93407756245b23d0cea53ccfd7684fd72e6ac2da91d11b950c'
+    encIsbn = str(isbn)
+
+    url = "http://data4library.kr/api/recommandList?format=json&authKey=" + authKey + "&isbn13=" + encIsbn  # json 결과
+    request = urllib.request.Request(url)
+    response = urllib.request.urlopen(request)
+    rescode = response.getcode()
+    if (rescode == 200):
+        response_body = response.read()
+        json_data = json.loads(response_body.decode('utf-8'))
+        json_data = json_data['response']
+
+        return json_data
+    else:
+        print("Error Code:" + rescode)
+        return rescode
