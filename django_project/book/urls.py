@@ -6,4 +6,5 @@ app_name = 'book'
 
 urlpatterns = [
    path('<int:book_id>/', views.bookDetail, name='detail'),
+   path('',views.openMap, name='map'),
 ]

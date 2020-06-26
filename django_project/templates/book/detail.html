@@ -32,7 +32,10 @@ function sendLocation(latitude, longitude) {
     location.href=string;
 }
 
-
+function open_page(longitude, latitude) {
+    var url = "https://map.naver.com/v5/directions/" + longitude + "," + latitude + "/-/-/transit?c="
+    newPage=window.open(url);
+}
 
 
 </script>
@@ -133,7 +136,7 @@ function sendLocation(latitude, longitude) {
                         <td>{{ library.lib.operatingTime }}</td>
                         <td>{{ library.lib.distance }}km</td>
                         <td>{{ library.lib.result }}</td>
-                        <td><button type="button" class="btn btn-success" href="#">지도</button></td>
+                        <td><button type="button" class="btn btn-success" onclick="open_page('{{ detail.0.book.latitude }}', '{{ detail.0.book.longitude }}')">지도</button></td>
                     </tr>
                     {% endfor %}
                     </tbody>

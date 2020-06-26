@@ -20,6 +20,12 @@ def bookDetail(request, book_id):
     return render(request, 'book/detail.html', content)
 
 
+def openMap(request):
+    longitude = float(request.GET.get('longitude'))
+    latitude = float(request.GET.get('latitude'))
+
+    return render(request, 'https://map.naver.com/v5/transit?c='+longitude+','+ latitude)
+
 '''
 책 정보 호출 함수
 
