@@ -210,5 +210,3 @@ def recommendedBooks(isbn):
     else:
         print("Error Code:" + rescode)
         return rescode
-
-    
