@@ -27,3 +27,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = _('user')
         verbose_name_plural = _('users')
         swappable = 'AUTH_USER_MODEL'
+
+
+class ViewedBook(models.Model):
+    user = models.ForeignKey(User, verbose_name='검색한 사용자', on_delete=models.CASCADE)
+    book = models.IntegerField('검색한 책')
+    date = models.DateTimeField('검색한 시간', default=timezone.now)
