@@ -32,6 +32,30 @@ function sendLocation(latitude, longitude) {
     location.href=string;
 }
 
+function setKilo(kilo){
+    switch(kilo){
+        case 5:
+            document.getElementById("showKilo").innerHTML = "범위 : 5km";
+            break;
+
+        case 10:
+            document.getElementById("showKilo").innerHTML = "범위 : 10km";
+            break;
+
+        case 15:
+            document.getElementById("showKilo").innerHTML = "범위 : 15km";
+            break;
+
+        case 20:
+            document.getElementById("showKilo").innerHTML = "범위 : 20km";
+            break;
+        
+        default:
+        alert("Km 지정 에러");
+    }
+
+}
+
 
 
 
@@ -51,7 +75,7 @@ function sendLocation(latitude, longitude) {
     <div class="space" style="margin-top: 84px"></div>
 
     <div class="searchList">
-        <ul class="resultList">
+        <ul style="margin-bottom:40pt" class="resultList">
             <li class="item">
                 <dl>
                     <!--
@@ -96,25 +120,31 @@ function sendLocation(latitude, longitude) {
         -->
         <div class="libraryTableArea">
             <div style="position:relative;">
-                <div>
-                    <p class="tableTitle">도서관 리스트</p>
+
+                <div style="margin-bottom:10pt" class="tableTitle" >
                     <div style="float:right" class="settingLibs">
-                    <!-- 거리 선택 dropdown -->
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            거리
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">5km 이내</a>
-                            <a class="dropdown-item" href="#">10km 이내</a>
-                            <a class="dropdown-item" href="#">15km 이내</a>
-                            <a class="dropdown-item" href="#">20km 이내</a>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    거리
+                            </button>
+                            <div class="dropdown-menu">
+                                <a onClick="setKilo(" + 5 + ")" id="5km" class="dropdown-item" href="#">5km 이내</a>
+                                <a onClick="setKilo(" + 10 + ")" id="10km" class="dropdown-item" href="#">10km 이내</a>
+                                <a onClick="setKilo(" + 15 + ")" id="15km" class="dropdown-item" href="#">15km 이내</a>
+                                <a onClick="setKilo(" + 20 + ")" id="20km" class="dropdown-item" href="#">20km 이내</a>
+                            </div>
                         </div>
+                        
+                        <div><h2 id="showKilo">기본 범위 : 5km</h2></div>
+                        <button onclick="getLocation()" class="btn btn-info">내 위치</button>
                     </div>
-                <button onclick="getLocation()" class="btn btn-info">내 위치</button>
+                    <!-- 거리 선택 dropdown -->
+                    <h3 style="float:inline-block">도서관 리스트</h3>
                 </div>
-                <table class="table table-hover" disabled="">
+        
+                
+                <table style="margin-bottom:40pt" class="table table-hover" disabled="">
                     <thead>
                     <tr align="center">
                         <th scope="col">도서관명</th>
@@ -138,7 +168,7 @@ function sendLocation(latitude, longitude) {
                     {% endfor %}
                     </tbody>
                 </table>
-            </div>
+
             <div style="position:relative; left:45%; top:50%;">
             </div>
         </div>
