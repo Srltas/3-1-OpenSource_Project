@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'search.apps.SearchConfig',
     'users.apps.UsersConfig',
+    'book.apps.BookConfig',
 ]
 
 MIDDLEWARE = [

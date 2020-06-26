@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
+{% load book_filter %}
 {% block content %}
-
 
 <script type="text/javascript">
 
@@ -180,15 +180,14 @@ function setKilo(kilo){
             </div>
         </div>
         <!--여기에 추천 책 리스트 입력-->
-        {% if user.is_authenticated %}
         <div>
             <h3 class="infoTitle">추천 책 목록</h3>
         </div>
 
-
         <div>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
+                    <!--
                     {% for library in libs %}
                         <div class="swiper-slide">
                             {% for book in library %}
@@ -196,6 +195,18 @@ function setKilo(kilo){
                             {% endfor %}
                         </div>
                     {% endfor %}
+                    -->
+                    <div class="swiper-slide">
+                        <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
+                        <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
+                        <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
+                    </div>
+                    <div class="swiper-slide">
+                       <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
+                    </div>
+                    <div class="swiper-slide">
+                       <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
+                    </div>
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -213,7 +224,6 @@ function setKilo(kilo){
                 </script>
             </div>
         </div>
-        {% endif %}
         <!--
         <div class="infoArea" style="border: 1px solid gray">
         -->
