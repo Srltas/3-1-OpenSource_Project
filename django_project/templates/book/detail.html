@@ -6,7 +6,7 @@
 function getLocation() {
     //alert("getLocation");
 
-    
+
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(function(pos){
             sendLocation(pos.coords.latitude, pos.coords.longitude);
@@ -32,12 +32,11 @@ function sendLocation(latitude, longitude) {
     location.href=string;
 }
 
-<<<<<<< HEAD
-function open_page(longitude, latitude) {
-    var url = "https://map.naver.com/v5/directions/" + longitude + "," + latitude + "/-/-/transit?c="
+function open_page() {
+    var url = "https://map.naver.com/v5/directions/-/-/-/transit?c="
     newPage=window.open(url);
 }
-=======
+
 function setKilo(kilo){
     switch(kilo){
         case 5:
@@ -61,10 +60,6 @@ function setKilo(kilo){
     }
 
 }
-
-
->>>>>>> 9e48344289fb561c332d2fcb864c1abcad353fbd
-
 
 </script>
 
@@ -149,8 +144,8 @@ function setKilo(kilo){
                     <!-- 거리 선택 dropdown -->
                     <h3 style="float:inline-block">도서관 리스트</h3>
                 </div>
-        
-                
+
+
                 <table style="margin-bottom:40pt" class="table table-hover" disabled="">
                     <thead>
                     <tr align="center">
@@ -170,7 +165,7 @@ function setKilo(kilo){
                         <td>{{ library.lib.operatingTime }}</td>
                         <td>{{ library.lib.distance }}km</td>
                         <td>{{ library.lib.result }}</td>
-                        <td><button type="button" class="btn btn-success" onclick="open_page('{{ detail.0.book.latitude }}', '{{ detail.0.book.longitude }}')">지도</button></td>
+                        <td><button type="button" class="btn btn-success" onclick="open_page()">지도</button></td>
                     </tr>
                     {% endfor %}
                     </tbody>
