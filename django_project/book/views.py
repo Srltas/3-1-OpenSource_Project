@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from users.models import ViewedBook
 import urllib.request
 import json
 import numbers
@@ -8,6 +9,11 @@ import math
 
 
 def bookDetail(request, book_id):
+    # 검색한 책 DB에 추가
+    if request.user.is_authenticated:
+        viewBook = ViewedBook(user=request.user, book=book_id)
+        viewBook.save()
+
     longitude = float(request.GET.get('longitude', -1))
     latitude = float(request.GET.get('latitude', -1))
     distance = request.GET.get('distance', 5)
