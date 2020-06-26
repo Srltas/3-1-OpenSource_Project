@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 {% block content %}
 
+
 <script type="text/javascript">
 
 function getLocation() {
@@ -55,10 +56,6 @@ function setKilo(kilo){
     }
 
 }
-
-
-
-
 </script>
 
 <div class="container">
@@ -179,7 +176,43 @@ function setKilo(kilo){
         <div>
             <h3 class="infoTitle">추천 책 목록</h3>
         </div>
+
+        
+        <div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    슬라이드 1
+                </div>
+
+                <div class="swiper-slide">
+                    슬라이드 2
+                </div>
+
+                <div class="swiper-slide">
+                    슬라이드 3
+                </div>
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <script src="path/to/swiper.min.js"></script>
+            <script id="rendered-js">
+                var slide = new Swiper('.swiper-container', {
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    autoplay: {
+                        delay: 3000
+                    }
+                })
+            </script>
+        </div>
+        </div>
+
+        <!--
         <div class="infoArea" style="border: 1px solid gray">
+        <!--책 5권 표시 예정
             <ul>
                 <li>
                     <div>
@@ -191,7 +224,7 @@ function setKilo(kilo){
                 </li>
             </ul>
         </div>
-
+        -->
         <div class="titleArea">
             <h3 class="infoTitle">div 박스</h3>
         </div>
