@@ -2,6 +2,7 @@
 {% load book_filter %}
 {% block content %}
 
+
 <script type="text/javascript">
 
 function getLocation() {
@@ -120,24 +121,24 @@ function setKilo(kilo){
         <div class="libraryTableArea">
             <div style="position:relative;">
 
-                <div style="margin-bottom:10pt" class="tableTitle">
+                <div style="margin-bottom:10pt" class="tableTitle" >
                     <div style="" class="settingLibs">
 
                         <div style="float:right">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" id="showKilo">
                                     거리
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a onClick="setKilo(5)" id="5km" class="dropdown-item" href="#">5km 이내</a>
-                                    <a onClick="setKilo(10)" id="10km" class="dropdown-item" href="#">10km 이내</a>
-                                    <a onClick="setKilo(15)" id="15km" class="dropdown-item" href="#">15km 이내</a>
-                                    <a onClick="setKilo(20)" id="20km" class="dropdown-item" href="#">20km 이내</a>
-                                </div>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a onClick="setKilo(5)" id="5km" class="dropdown-item" href="#">5km 이내</a>
+                                <a onClick="setKilo(10)" id="10km" class="dropdown-item" href="#">10km 이내</a>
+                                <a onClick="setKilo(15)" id="15km" class="dropdown-item" href="#">15km 이내</a>
+                                <a onClick="setKilo(20)" id="20km" class="dropdown-item" href="#">20km 이내</a>
                             </div>
-                            <h5 style="float:right" id="showKilo">기본 범위 : 5km</h5>
-                            <button onclick="getLocation()" class="btn btn-info">내 위치</button>
+                        </div>
+                        <!--<h5 style="float:right" id="showKilo">기본 범위 : 5km</h5>-->
+                        <button onclick="getLocation()" class="btn btn-info">내 위치</button>
                         </div>
                     </div>
                 </div>
@@ -221,13 +222,13 @@ function setKilo(kilo){
                         delay: 3000
                     }
                 })
-                </script>
-            </div>
+            </script>
         </div>
+        </div>
+
         <!--
         <div class="infoArea" style="border: 1px solid gray">
-        -->
-        <!-- 책 5권 표시 예정
+        <!--책 5권 표시 예정
             <ul>
                 <li>
                     <div>
