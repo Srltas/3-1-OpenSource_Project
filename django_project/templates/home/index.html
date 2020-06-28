@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load book_filter %}
 {% block content %}
 
 <div class="row mt-5">
@@ -23,52 +24,30 @@
     </form>
 </div>
 
-{% if user.is_authenticated %}
+{% if user.is_authenticated and rcmBooks %}
 <div style="margin-left: 300px; margin-right: 300px; margin-top: 140px;">
     <div>
         <center>
-            <h3 id="recommended_book" class="infoTitle">추천 책 목록</h3>
+            <h3 id="recommended_book" class="infoTitle">추천 도서</h3>
         </center>
     </div>
     <div>
         <div class="swiper-container">
             <div class="swiper-wrapper">
+                {% for book in rcmBooks %}
+                {% if forloop.counter|remainder:4 == 1%}
                 <div class="swiper-slide">
                     <center>
+                        {% endif %}
+                         <a href="{% url 'book:detail' book.book.isbn13 %}">
                         <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
+                             style="margin-right: 30px; margin-left: 30px"/>
+                        </a>
+                        {% if forloop.counter|remainder:4 == 0 or forloop.last %}
                     </center>
                 </div>
-                <div class="swiper-slide">
-                    <center>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                    </center>
-                </div>
-                <div class="swiper-slide">
-                    <center>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
-                             style="margin-right: 30px; margin-left: 30px"></img>
-                    </center>
-                </div>
+                {% endif %}
+                {% endfor %}
             </div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
@@ -80,9 +59,10 @@
                         prevEl: '.swiper-button-prev',
                     },
                     autoplay: {
-                        delay: 3000
+                        delay: 5000
                     }
                 })
+
             </script>
         </div>
     </div>

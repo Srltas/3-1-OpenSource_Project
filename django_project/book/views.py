@@ -207,10 +207,6 @@ def relatedBooks(isbn):
         return json_data
     else:
         print("Error Code:" + rescode)
-<<<<<<< HEAD
-        return rescode
-=======
         return rescode
 
 
->>>>>>> 581cf35ad1557d85c830f78fc31d82b294ed1e2b
