@@ -4,59 +4,17 @@
 
 <script type="text/javascript">
 
-function getLocation() {
-    //alert("getLocation");
-
-    
+function getLocation(distance) {
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(function(pos){
-            sendLocation(pos.coords.latitude, pos.coords.longitude);
-            /*
-            $('#latitude').html(pos.coords.latitude);
-            $('#longitude').html(pos.coords.longitude);
-            */
-            document.getElementById("needHide").style.display="none";
+            var string = './?longitude=' + pos.coords.longitude + '&latitude=' + pos.coords.latitude + '&distance=' + distance;
+            location.href=string;
         });
     }
     else{
         alert("위치를 얻을 수 없습니다.");
     }
 }
-
-function showPosition(position) {
-    x.innerHTML = "위도:" + position.coords.latitude + " 경도:" + position.coords.longitude;
-}
-
-function sendLocation(latitude, longitude) {
-    var string = './?longitude='+longitude+'&latitude='+latitude;
-
-    location.href=string;
-}
-
-function setKilo(kilo){
-    switch(kilo){
-        case 5:
-            document.getElementById("showKilo").innerHTML = "범위 : 5km";
-            break;
-
-        case 10:
-            document.getElementById("showKilo").innerHTML = "범위 : 10km";
-            break;
-
-        case 15:
-            document.getElementById("showKilo").innerHTML = "범위 : 15km";
-            break;
-
-        case 20:
-            document.getElementById("showKilo").innerHTML = "범위 : 20km";
-            break;
-        
-        default:
-        alert("Km 지정 에러");
-    }
-
-}
-
 
 </script>
 
@@ -120,24 +78,28 @@ function setKilo(kilo){
         <div class="libraryTableArea">
             <div style="position:relative;">
 
-                <div style="margin-bottom:10pt" class="tableTitle" >
+                <div style="margin-bottom:10pt" class="tableTitle">
                     <div style="" class="settingLibs">
 
                         <div style="float:right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false" id="showKilo">
-                                    거리
-                            </button>
-                            <div class="dropdown-menu">
-                                <a onClick="setKilo(5)" id="5km" class="dropdown-item" href="#">5km 이내</a>
-                                <a onClick="setKilo(10)" id="10km" class="dropdown-item" href="#">10km 이내</a>
-                                <a onClick="setKilo(15)" id="15km" class="dropdown-item" href="#">15km 이내</a>
-                                <a onClick="setKilo(20)" id="20km" class="dropdown-item" href="#">20km 이내</a>
+                            {% if libs %}
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false" id="showKilo">
+                                    {{ range }}km 이내
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a onClick="getLocation(5)" id="5km" class="dropdown-item" href="#">5km 이내</a>
+                                    <a onClick="getLocation(10)" id="10km" class="dropdown-item" href="#">10km 이내</a>
+                                    <a onClick="getLocation(15)" id="15km" class="dropdown-item" href="#">15km 이내</a>
+                                    <a onClick="getLocation(20)" id="20km" class="dropdown-item" href="#">20km 이내</a>
+                                </div>
                             </div>
-                        </div>
-                        <!--<h5 style="float:right" id="showKilo">기본 범위 : 5km</h5>-->
-                        <button onclick="getLocation()" class="btn btn-info">내 위치</button>
+                            {% endif %}
+                            <!--<h5 style="float:right" id="showKilo">기본 범위 : 5km</h5>-->
+                            {% if not libs %}
+                            <button onclick="getLocation(5)" class="btn btn-info">내 위치</button>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -187,29 +149,18 @@ function setKilo(kilo){
         <div>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <!--
-                    {% for library in libs %}
-                        <div class="swiper-slide">
-                            {% for book in library %}
-                            <a>{{ book.lib.libName }}</a>
-                            {% endfor %}
-                        </div>
+                    {% for book in relatedBook.docs %}
+                    {% if forloop.counter|remainder:4 == 1%}
+                    <div class="swiper-slide">
+                        <center>
+                            {% endif %}
+                            <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                                 style="margin-right: 30px; margin-left: 30px"></img>
+                            {% if forloop.counter|remainder:4 == 0 or forloop.last %}
+                        </center>
+                    </div>
+                    {% endif %}
                     {% endfor %}
-                    -->
-                    {% for list in -- %}
-                    {% if forloop.counter|remainder:3 == 1%}
-                    <div class="swiper-slide">
-                    {% endif %}
-                        <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
-                    {% if forloop.counter|remainder:3 == 0 %}
-                    </div>
-                    {% endif %}
-                    <div class="swiper-slide">
-                       <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
-                    </div>
-                    <div class="swiper-slide">
-                       <img class="info" src="{{ detail.0.book.bookImageURL }}" width="200" height="250"></img>
-                    </div>
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -221,29 +172,15 @@ function setKilo(kilo){
                         prevEl: '.swiper-button-prev',
                     },
                     autoplay: {
-                        delay: 3000
+                        delay: 5000
                     }
                 })
-            </script>
-        </div>
-        </div>
 
-        <!--
-        <div class="infoArea" style="border: 1px solid gray">
-        -->
-        <!--책 5권 표시 예정
-            <ul>
-                <li>
-                    <div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                    </div>
-                </li>
-            </ul>
+
+
+                </script>
+            </div>
         </div>
-        -->
     </div>
 </div>
 

@@ -16,15 +16,21 @@ def bookDetail(request, book_id):
 
     longitude = float(request.GET.get('longitude', -1))
     latitude = float(request.GET.get('latitude', -1))
-    distance = request.GET.get('distance', 5)
+    distance = int(request.GET.get('distance', 5))
+    if distance > 20:
+        distance = 20
+    if distance < 5:
+        distance = 5
 
     content = bookInfo(book_id)
     content['relatedBook'] = recommendedBooks(book_id)
     if(longitude != -1):
         content['libs'] = searchLibraryWithBooks(book_id, longitude, latitude, distance=distance)
+        content['range'] = distance
 
     print(content)
     return render(request, 'book/detail.html', content)
+
 
 
 def openMap(request):
