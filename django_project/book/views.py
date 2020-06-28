@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from users.models import ViewedBook
+from django.utils import timezone
 import urllib.request
 import json
 import numbers
@@ -11,27 +12,28 @@ import math
 def bookDetail(request, book_id):
     # 검색한 책 DB에 추가
     if request.user.is_authenticated:
-        viewBook = ViewedBook(user=request.user, book=book_id)
-        viewBook.save()
+        lastBook = ViewedBook.objects.filter(user=request.user, book=book_id).order_by('-date').first()
+        if lastBook is None or (timezone.now()-lastBook.date).days > 0 or (timezone.now()-lastBook.date).seconds > 1800:
+            viewBook = ViewedBook(user=request.user, book=book_id)
+            viewBook.save()
 
+    # 매개변수 가져오기
     longitude = float(request.GET.get('longitude', -1))
     latitude = float(request.GET.get('latitude', -1))
-    distance = request.GET.get('distance', 5)
+    distance = int(request.GET.get('distance', 4))
+    if distance > 10:
+        distance = 10
+    if distance < 2:
+        distance = 2
 
     content = bookInfo(book_id)
-    content['relatedBook'] = recommendedBooks(book_id)
+    content['relatedBook'] = relatedBooks(book_id)
     if(longitude != -1):
         content['libs'] = searchLibraryWithBooks(book_id, longitude, latitude, distance=distance)
+        content['range'] = distance
 
     print(content)
     return render(request, 'book/detail.html', content)
-
-
-def openMap(request):
-    longitude = float(request.GET.get('longitude'))
-    latitude = float(request.GET.get('latitude'))
-
-    return render(request, 'https://map.naver.com/v5/transit?c='+longitude+','+ latitude)
 
 '''
 책 정보 호출 함수
@@ -67,7 +69,6 @@ def bookInfo(isbn):
         json_data = json.loads(response_body.decode('utf-8'))
         json_data = json_data['response']
 
-        print(json_data)
         return json_data
     else:
         print("Error Code:" + rescode)
@@ -118,7 +119,7 @@ def searchLibraryWithBooks(isbn, x, y, distance=5):
     # 내 위치에서 distance km 이내에 떨어진 도서관의 책 소유 여부 구한 후 리스트에 담아서 리턴
     libList = []
     for lib in jsonData:
-        if lib['lib']['distance'] <= distance:
+        if lib['lib']['distance'] <= distance and len(libList) < 10:
             url = "http://data4library.kr/api/bookExist?format=json&authKey=" + authKey + "&isbn13=" + encIsbn + "&libCode=" + lib['lib']['libCode']
             request = urllib.request.Request(url)
             response = urllib.request.urlopen(request)
@@ -131,9 +132,6 @@ def searchLibraryWithBooks(isbn, x, y, distance=5):
                 print(libBookResult)
                 lib['lib']['result'] = libBookResult['result']
                 libList.append(lib)
-            else:
-                print("Error Code:" + rescode)
-                return rescode
         else:
             return libList
 
@@ -193,7 +191,7 @@ docs 목록
         class_no 주제분류
         bookImageURL 도서 이미지 URL
 """
-def recommendedBooks(isbn):
+def relatedBooks(isbn):
     authKey = '1785223b91685a93407756245b23d0cea53ccfd7684fd72e6ac2da91d11b950c'
     encIsbn = str(isbn)
 
@@ -210,3 +208,5 @@ def recommendedBooks(isbn):
     else:
         print("Error Code:" + rescode)
         return rescode
+
+

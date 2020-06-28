@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <div class="container">
     <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
     <center>
@@ -15,26 +14,16 @@
                 <input type="password" id="password" class="form-control" placeholder="비밀번호" name="password"
                        style="width:400px; height:35px;" required>
             </div>
-            <div class="checkbox mb-3">
-            </div>
+            <div class="checkbox mb-3"></div>
             {% include "form_errors.html" %}
             <div>
-                <!--
-                <button class="btn btn-primary" type="button" style="inline-block: border; margin-right: 30px" onclick="location.href='{%url 'users:signup' %}'">회원가입</button>
-                -->
-
                 <button class="btn btn-primary" type="submit" style="width:400px; height:35px;">로그인</button>
 
                 <div style="margin-top: 20px;">
                     <a href="{%url 'users:signup' %}" class="link_join" style="text-size:5px;">회원가입</a>
                 </div>
-
             </div>
         </form>
-
-        <p class="mt-5 mb-3 text-muted">&copy; 살..려...줘...</p>
     </center>
 </div>
-
-
 {% endblock %}
