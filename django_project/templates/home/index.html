@@ -23,23 +23,57 @@
     </form>
 </div>
 
-<div>
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <a> aaaaaa </a>
+{% if user.is_authenticated %}
+<div style="margin-left: 300px; margin-right: 300px; margin-top: 140px;">
+    <div>
+        <center>
+            <h3 id="recommended_book" class="infoTitle">추천 책 목록</h3>
+        </center>
+    </div>
+    <div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <center>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                    </center>
+                </div>
+                <div class="swiper-slide">
+                    <center>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                    </center>
+                </div>
+                <div class="swiper-slide">
+                    <center>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                        <img class="info" src="{{ book.book.bookImageURL }}" width="200" height="250"
+                             style="margin-right: 30px; margin-left: 30px"></img>
+                    </center>
+                </div>
             </div>
-            <div class="swiper-slide">
-                <a> aaaaaa </a>
-            </div>
-            <div class="swiper-slide">
-                <a> aaaaaa </a>
-            </div>
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <script src="path/to/swiper.min.js"></script>
-        <script id="rendered-js">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <script src="path/to/swiper.min.js"></script>
+            <script id="rendered-js">
                 var slide = new Swiper('.swiper-container', {
                     navigation: {
                         nextEl: '.swiper-button-next',
@@ -49,10 +83,13 @@
                         delay: 3000
                     }
                 })
-        </script>
+
+
+            </script>
+        </div>
     </div>
 </div>
-
+{% endif %}
 </body>
 </html>
 {% endblock %}
