@@ -3,7 +3,6 @@
 {% block content %}
 
 <script type="text/javascript">
-
 function getLocation(distance) {
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(function(pos){
@@ -15,7 +14,6 @@ function getLocation(distance) {
         alert("위치를 얻을 수 없습니다.");
     }
 }
-
 </script>
 
 <div class="container">
@@ -183,5 +181,4 @@ function getLocation(distance) {
         </div>
     </div>
 </div>
-
 {% endblock %}
